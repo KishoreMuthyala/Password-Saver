@@ -24,3 +24,21 @@ def home(request):
 def delete(request, id):
     Passwords.objects.get(id=id).delete()
     return redirect('home')
+
+
+def update(request, id):
+    pwd = Passwords.objects.get(id=id)
+    if request.method == 'POST':
+        website_url = request.POST["website_url"]
+        website_name = request.POST["website_name1"]
+        email = request.POST["Email_User1"]
+        password = request.POST["password1"]
+        pwd.website_url = website_url
+        pwd.website_name = website_name
+        pwd.email = email
+        pwd.password = password
+        pwd.save()
+        return redirect("home")
+    return render(request, 'update.html', {
+        'pas': pwd
+    })

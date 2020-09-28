@@ -1,0 +1,58 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="col-md-6 colu">
+  <form action="" method="POST">
+    {% csrf_token %}
+
+    <div class="comp">
+      <label for="website_name">Website Name</label>
+      <input
+        type="text"
+        placeholder="Website Name"
+        name="website_name1"
+        class="form-control"
+        value="{{ pas.website_name }}"
+        required
+      />
+    </div>
+    <div class="comp">
+      <label for="website">Website Url</label>
+      <input
+        type="text"
+        placeholder="Website Url"
+        name="website_url"
+        class="form-control"
+        value="{{ pas.website_url }}"
+        required
+      />
+    </div>
+    <input type="hidden" name="user_id1" value="{{ user.id }}" />
+    <div class="comp">
+      <label for="Email_User">Email or Username</label>
+      <input
+        type="text"
+        placeholder="Email or Username"
+        name="Email_User1"
+        class="form-control"
+        value="{{ email }}"
+        required
+      />
+    </div>
+    <div class="comp">
+      <label for="password">Website Password </label><i class="fas fa-key"></i>
+      <input
+        type="password"
+        placeholder="Password"
+        name="password1"
+        class="form-control"
+        value="{{ password }}"
+        required
+      />
+    </div>
+    <div class="comp al">
+      <button class="btn btn-primary">Update</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

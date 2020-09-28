@@ -65,14 +65,19 @@
       </div>
       <div><h3>Username or Email : {{ w.email}}</h3></div>
       <div><h3>Password : {{ w.password }}</h3></div>
+      <form action="update/{{ w.id }}" style="margin-bottom: 10px">
+        {% csrf_token %}
+        <button class="btn btn-primary">Edit</button>
+      </form>
       <form action="{{ w.id }}" method="POST">
         {% csrf_token %}
         <button class="btn btn-danger">Delete</button>
       </form>
     </div>
+
     {% endfor %} {% else %}
     <h3>No Passwords added</h3>
     {% endif %}
   </div>
 </div>
-{% else %} Plaese Register/Login to view this page {% endif %}{% endblock %}
+{% else %} Please Register/Login to view this page {% endif %}{% endblock %}
