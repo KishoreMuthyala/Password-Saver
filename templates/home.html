@@ -1,0 +1,78 @@
+{% extends 'base.html' %} {% block content %} {% if user.is_authenticated %}
+<div class="row rows">
+  <div class="col-md-6 colu">
+    <form action="" method="POST">
+      {% csrf_token %}
+
+      <div class="comp">
+        <label for="website_name">Website Name</label>
+        <input
+          type="text"
+          placeholder="Website Name"
+          name="website_name"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="comp">
+        <label for="website">Website Url</label>
+        <input
+          type="text"
+          placeholder="Website Url"
+          name="website"
+          class="form-control"
+          required
+        />
+      </div>
+      <input type="hidden" name="user_id" value="{{ user.id }}" />
+      <div class="comp">
+        <label for="Email_User">Email or Username</label>
+        <input
+          type="text"
+          placeholder="Email or Username"
+          name="Email_User"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="comp">
+        <label for="password">Website Password </label
+        ><i class="fas fa-key"></i>
+        <input
+          type="password"
+          placeholder="Password"
+          name="password"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="comp al">
+        <button class="btn btn-primary">Add</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-5">
+    {% if websites %} {% for w in websites %}
+    <div class="card">
+      <div name="name"><h3>Website Name : {{ w.website_name }}</h3></div>
+      <div>
+        <h3>
+          Website URL :
+          <a href="https://{{w.website_url }}" style="color: white"
+            >{{ w.website_url }}</a
+          >
+        </h3>
+      </div>
+      <div><h3>Username or Email : {{ w.email}}</h3></div>
+      <div><h3>Password : {{ w.password }}</h3></div>
+      <form action="{{ w.id }}" method="POST">
+        {% csrf_token %}
+        <button class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+    {% endfor %} {% else %}
+    <h3>No Passwords added</h3>
+    {% endif %}
+  </div>
+</div>
+{% else %} Plaese Register/Login to view this page {% endif %}{% endblock %}
