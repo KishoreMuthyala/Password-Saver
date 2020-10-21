@@ -1,7 +1,7 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block title %}Password Saver{% endblock %} {% block content %}
 
-<div class="col-md-6 colu">
-  <form action="" method="POST">
+<div class="col-md-6 colum">
+  <form action="kishore" method="POST">
     {% csrf_token %}
 
     <div class="comp">
@@ -34,7 +34,7 @@
         placeholder="Email or Username"
         name="Email_User1"
         class="form-control"
-        value="{{ email }}"
+        value="{{ pas.email }}"
         required
       />
     </div>
@@ -45,7 +45,7 @@
         placeholder="Password"
         name="password1"
         class="form-control"
-        value="{{ password }}"
+        value="{{ pas.password }}"
         required
       />
     </div>
@@ -53,6 +53,9 @@
       <button class="btn btn-primary">Update</button>
     </div>
   </form>
+  <div class="comp al">
+    <a href="/"><button class="btn btn-dark">Home Page</button></a>
+  </div>
 </div>
 
 {% endblock %}

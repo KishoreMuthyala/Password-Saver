@@ -1,4 +1,7 @@
-{% extends 'base.html' %} {% block content %} {% if user.is_authenticated %}
+{% extends 'base.html' %} 
+{% block title %}Password Saver{% endblock %}
+{% block content %}
+ {% if user.is_authenticated %}
 <div class="row rows">
   <div class="col-md-6 colu">
     <form action="" method="POST">
@@ -23,6 +26,7 @@
           class="form-control"
           required
         />
+        <small>Enter full url i.e with http:// or https://</small>
       </div>
       <input type="hidden" name="user_id" value="{{ user.id }}" />
       <div class="comp">
@@ -52,31 +56,55 @@
     </form>
   </div>
   <div class="col-md-5">
-    {% if websites %} {% for w in websites %}
-    <div class="card">
-      <div name="name"><h3>Website Name : {{ w.website_name }}</h3></div>
+    {% if websites %}
+    <!-- <form action="search/{{ user.id }}" method="POST">
+      {% csrf_token %}
+      <input type="text" class="form-control" name="web" placeholder="Search" />
+    </form> -->
+    {% for w in websites %}
+
+    <div class="card1 card">
+      <div name="name"><h4 style="text-align: center;">{{ w.website_name }}</h4></div>
       <div>
-        <h3>
-          Website URL :
-          <a href="https://{{w.website_url }}" style="color: white"
+        <h4>
+          <i class="fa-link fas"></i> 
+          <a href="{{w.website_url }}" target="_blank" 
             >{{ w.website_url }}</a
           >
-        </h3>
+        </h4>
       </div>
-      <div><h3>Username or Email : {{ w.email}}</h3></div>
-      <div><h3>Password : {{ w.password }}</h3></div>
-      <form action="update/{{ w.id }}" style="margin-bottom: 10px">
+      <div><h4><i class="fa-envelope fas"></i> {{ w.email}}</h4></div>
+      <div>
+        <h4>
+          <i class="fa-key fas"></i>
+          <input
+            type="password"
+            class="no"
+            id="{{w.id}}"
+            value="{{ w.password }}"
+          />
+          
+            <i class="fa-eye-slash fas" onclick="myFunc({{ w.id }})" id="a{{ w.id }}" style="color: black;"></i>
+          
+            <i class="" onclick="copy({{ w.id }})" id="b{{ w.id }}"></i>
+        </h4>
+      </div>
+      <form
+        action="update/{{ w.id }}/form"
+        style="margin-bottom: 10px"
+        method="POST"
+      >
         {% csrf_token %}
-        <button class="btn btn-primary">Edit</button>
+        <button class="btn btn-primary bt">Edit</button>
       </form>
       <form action="{{ w.id }}" method="POST">
         {% csrf_token %}
-        <button class="btn btn-danger">Delete</button>
+        <button class="btn btn-danger bt">Delete</button>
       </form>
     </div>
 
     {% endfor %} {% else %}
-    <h3>No Passwords added</h3>
+    <h4>No Passwords added</h4>
     {% endif %}
   </div>
 </div>

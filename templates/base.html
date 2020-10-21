@@ -1,144 +1,202 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Password Saver</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://kit.fontawesome.com/d9b8435b49.js"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      function myFunction() {
-        var x = document.getElementById("exampleInputPassword1");
-        if (x.type === "password") {
-          x.type = "text";
-        } else {
-          x.type = "password";
-        }
-      }
-    </script>
-    <style>
-      .rows {
-        margin: 10px;
-      }
-      .comp {
-        margin-top: 20px;
-      }
-      .al {
-        text-align: right;
-      }
-      .btn {
-        width: 100px;
-      }
-      .card {
-        background-color: #7952b3;
-        color: white;
-        text-align: center;
-        min-height: 200px;
-        max-width: 600px;
-        margin-bottom: 50px;
-        margin-top: 10px;
-        padding: 30px 10px;
-      }
-      .fas {
-        margin-left: 5px;
-      }
-      .log:hover {
-        color: black !important;
-        font-size: 18px;
-      }
-      .con {
-        max-width: 500px;
-        margin: auto;
-        margin-top: 30px;
-      }
-      .alert {
-        padding: 20px;
-        background-color: #f44336;
-        color: white;
-      }
 
-      .closebtn {
-        margin-left: 15px;
-        color: white;
-        font-weight: bold;
-        float: right;
-        font-size: 22px;
-        line-height: 20px;
-        cursor: pointer;
-        transition: 0.3s;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %} {% endblock %}</title>
+  <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSEIzIBrhItg51s291gK-GRLZpaHiIkcp4yvA&usqp=CAU" type="image/x-icon">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+  <script src="https://kit.fontawesome.com/c72056408c.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+  <script>
+    function myFunction() {
+      var x = document.getElementById("exampleInputPassword1");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
       }
-
-      .closebtn:hover {
-        color: black;
+    }
+    function myFunc(id) {
+      var x = document.getElementById(id);
+      var y = document.getElementById('a' + id);
+      var cop=document.getElementById('b'+id);
+      if (x.type === "password") {
+        y.className = "fa-eye fas";
+        x.type = "text";
+        cop.className="fa-copy fas";
+      } else {
+        y.className="fa-eye-slash fas";
+        x.type = "password";
+        cop.className="";
       }
-    </style>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <h1 class="active text-white">
-        <a class="navbar-brand mr-auto" href="{% url 'home' %}"
-          ><i class="fas fa-key fa-lg"></i> Password Saver</a
-        >
-      </h1>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarText"
-        aria-controls="navbarText"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav ml-auto">
-          {% if user.is_authenticated %}
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'home' %}"
-              >Hello, {{user.username }}</a
-            >
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link log" href="{% url 'logout' %}">Logout</a>
-          </li>
+    }
+    function myFunc1(id) {
+      var x = document.getElementById(id);
+      
+      var y = document.getElementById('show');
+      if (x.type === "password") {
+        y.className = "fa-eye fas img";
+        x.type = "text";
+      } else {
+        y.className="fa-eye-slash fas img";
+        x.type = "password";
+      }
+    }
+    function copy(id) {
+      var copyText = document.getElementById(id);
+      var cop=document.getElementById('b'+id);    
+      copyText.select();
+      //copyText.setSelectionRange(0, 99999)
+      document.execCommand("copy");
+     // alert("Copied the text: " + copyText.value);
+     cop.innerHTML="  <span class='kis'>copied....</span>";
 
-          {% else %}
-          <li class="nav-item active">
-            <a class="nav-link log" href="{% url 'login'%}">Login</a>
-          </li>
+    setTimeout(function(){
+       cop.innerHTML = '';
+    }, 3000);
+    }
+    
+  </script>
+  <style>
+    .rows {
+      margin: 10px;
+    }
 
-          <li class="nav-item active">
-            <a class="nav-link log" href="{% url 'register' %}">Register</a>
-          </li>
-          {% endif %}
-        </ul>
-      </div>
-    </nav>
-    {% block content %} {% endblock %}
-  </body>
+    .comp {
+      margin-top: 20px;
+    }
+
+    .al {
+      text-align: right;
+    }
+
+    .btn {
+      width: 150px;
+    }
+    .div {
+      position:relative;
+  }
+  
+  .img {
+      position:absolute;
+      right:10px;
+      top:10px;
+  }
+  .kis{
+    text-decoration: none;
+    font-weight: normal;
+    margin-left: 20px;
+  }
+    .card1 {
+      min-height: 200px !important;
+      max-width: 500px !important;
+      margin-bottom: 50px;
+      margin-top: 10px;
+      margin-left: 0% !important;
+      padding: 30px 10px;
+    }
+    .card{
+      padding: 30px;
+      max-width: 400px;
+      margin: auto;
+      margin-top: 30px;
+    }
+
+    .lo {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .fas {
+      margin-left: 5px;
+    }
+
+    .no {
+      outline: none;
+      max-width: 200px;
+      border-top-style: hidden;
+      border-right-style: hidden;
+      border-left-style: hidden;
+      border-bottom-style: hidden;
+    }
+
+   
+
+    .alert {
+      padding: 20px;
+      background-color: #f44336;
+      color: white;
+    }
+
+    .closebtn {
+      margin-left: 15px;
+      color: white;
+      font-weight: bold;
+      float: right;
+      font-size: 22px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .closebtn:hover {
+      color: black;
+    }
+
+    .bt {
+      width: 90%;
+    }
+
+    .colum {
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <h1 class="active text-white">
+      <a class="navbar-brand mr-auto" href="{% url 'home' %}"><i class="fas fa-key fa-lg"></i> Password Saver</a>
+    </h1>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">Hello, {{user.username }}</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link log" href="{% url 'logout' %}">Logout</a>
+        </li>
+
+        {% else %}
+        <li {% if 'login' in request.path %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+          <a class="nav-link log" href="{% url 'login'%}">Login</a>
+        </li>
+
+        <li {% if 'register' in request.path %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+          <a class="nav-link log" href="{% url 'register' %}">Register</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  {% block content %} {% endblock %}
+</body>
+
 </html>

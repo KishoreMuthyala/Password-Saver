@@ -1,28 +1,31 @@
-{% extends 'base.html' %} {% block content %}
-
-<form action="login" method="POST" class="con">
-  {% csrf_token %} {% for message in messages %}
-  <div class="alert">
-    <span class="closebtn" onclick="this.parentElement.style.display='none';"
-      >&times;</span
-    >
-    {{ message }}
-  </div>
-  {% endfor %}
-  <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" class="form-control" name="username" />
-  </div>
-  <div class="form-group">
+{% extends 'base.html' %}{% block title %}Password Saver{% endblock %} {% block content %}
+<div class="card">
+  <form action="login" method="POST">
+    {% csrf_token %} {% for message in messages %}
+    <div class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';"
+        >&times;</span
+      >
+      {{ message }}
+    </div>
+    {% endfor %}
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" name="username" />
+    </div>
     <label for="exampleInputPassword1">Password</label>
+  <div class="form-group div">
+    <i class="fa-eye-slash fas img" onclick="myFunc1('exampleInputPassword1')" id="show" ></i>
     <input
       type="password"
-      class="form-control"
+      class="form-control input"
       name="password"
       id="exampleInputPassword1"
     />
   </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    <button type="submit" class="btn btn-success lo">Login</button>
+    <a href="{% url 'register'%}" class="btn btn-light lo">New User? Click here to register</a>
+  </form>
+</div>
 {% endblock %}
