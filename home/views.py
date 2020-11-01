@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
-
+from django.contrib.auth.hashers import make_password
 from .models import Passwords
-
-# Create your views here.
+import random
+import string
+import ast
+from .passenc import encode, decode
 
 
 def home(request):
@@ -13,12 +15,14 @@ def home(request):
             email = request.POST["Email_User"]
             password = request.POST["password"]
             user_id = request.POST['user_id']
-            # print(user_id)
+            text, d = encode(password)
             website = Passwords(website_url=website_url,
-                                website_name=website_name, email=email, password=password, user_id=user_id)
+                                website_name=website_name, email=email, password=text, user_id=user_id, keys=str(d))
             website.save()
         user_id = request.user.id
         websites = Passwords.objects.filter(user_id=user_id)
+        for website in websites:
+            website.password = decode(website.password, website.keys)
         return render(request, 'home.html', {'websites': websites, })
     else:
         return redirect("login")
@@ -31,6 +35,7 @@ def delete(request, id):
 
 def update(request, id, val):
     pwd = Passwords.objects.get(id=id)
+    psw = decode(pwd.password, pwd.keys)
     if request.method == 'POST':
         if val != 'form':
             website_url = request.POST["website_url"]
@@ -40,12 +45,16 @@ def update(request, id, val):
             pwd.website_url = website_url
             pwd.website_name = website_name
             pwd.email = email
-            pwd.password = password
+            text, d = encode(password)
+            pwd.password = text
+            pwd.keys = d
             pwd.save()
             return redirect("home")
+        pwd.password = psw
         return render(request, 'update.html', {
             'pas': pwd
         })
+    pwd.password = psw
     return render(request, 'update.html', {
         'pas': pwd
     })

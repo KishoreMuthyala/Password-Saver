@@ -39,7 +39,7 @@
           required
         />
       </div>
-      <div class="comp">
+      <!-- <div class="comp">
         <label for="password">Website Password </label
         ><i class="fas fa-key"></i>
         <input
@@ -49,6 +49,20 @@
           class="form-control"
           required
         />
+      </div> -->
+      <div class="comp">
+        <label for="password">Website Password </label><i class="fas fa-key"></i>
+        <div class="div">
+        <i class="fa-eye-slash fas img" onclick="chgeye('eyei')" id="show"></i>
+        <input
+          type="password"
+          placeholder="Password"
+          name="password"
+          class="form-control"
+          id="eyei"
+          required
+        />
+      </div>
       </div>
       <div class="comp al">
         <button class="btn btn-primary">Add</button>
@@ -61,6 +75,7 @@
       {% csrf_token %}
       <input type="text" class="form-control" name="web" placeholder="Search" />
     </form> -->
+    <h4>{{ websites|length }} passwords saved so far......</h4>
     {% for w in websites %}
 
     <div class="card1 card">
@@ -75,19 +90,33 @@
       </div>
       <div><h4><i class="fa-envelope fas"></i> {{ w.email}}</h4></div>
       <div>
-        <h4>
+        <h5>
           <i class="fa-key fas"></i>
-          <input
+          <!-- <input
             type="password"
             class="no"
             id="{{w.id}}"
             value="{{ w.password }}"
-          />
-          
-            <i class="fa-eye-slash fas" onclick="myFunc({{ w.id }})" id="a{{ w.id }}" style="color: black;"></i>
-          
-            <i class="" onclick="copy({{ w.id }})" id="b{{ w.id }}"></i>
-        </h4>
+            disabled
+          /> -->
+
+            <span id="hide"></span><input id="{{ w.id }}" type="password" value="{{ w.password }}" class="no" disabled aria-disabled="true" >
+          <script>
+            var hide = document.getElementById('hide');
+            var txt = document.getElementById('{{w.id}}');
+            //console.log(hide+" "+txt);
+            resize();
+            txt.addEventListener("input", resize);
+            
+            function resize() {
+              hide.textContent = txt.value;
+              c=(hide.offsetWidth)+5;
+              txt.style.width = c + "px";
+            }
+          </script>
+            <i class="fa-eye-slash fas" onclick="myFunc({{ w.id }})" id="a{{ w.id }}" style="cursor: pointer;"></i>
+            <i class="fa-copy fas" onclick="copy({{ w.id }})" id="b{{ w.id }}" style="cursor: pointer;"></i>
+        </h5>
       </div>
       <form
         action="update/{{ w.id }}/form"

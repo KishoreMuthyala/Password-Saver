@@ -38,16 +38,21 @@
         required
       />
     </div>
+    
     <div class="comp">
       <label for="password">Website Password </label><i class="fas fa-key"></i>
+      <div class="div">
+      <i class="fa-eye-slash fas img" onclick="chgeye('eyei')" id="show"></i>
       <input
         type="password"
         placeholder="Password"
         name="password1"
-        class="form-control"
+        class="form-control input"
         value="{{ pas.password }}"
+        id="eyei"
         required
       />
+    </div>
     </div>
     <div class="comp al">
       <button class="btn btn-primary">Update</button>
