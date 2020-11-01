@@ -25,7 +25,7 @@ SECRET_KEY = 'n(&rt!no!kj@bet)3*!693y0g@1v@c)cs7txkg2(lg1gqze^lu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['password-saver-kishore.herokuapp.com']
+ALLOWED_HOSTS = ['password-saver-kishore.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
