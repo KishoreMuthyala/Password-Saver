@@ -1,1 +1,3 @@
-web: gunicorn password_saver.wsgi --log-file
+web: gunicorn password_saver.wsgi:application --log-file - --log-level debug
+python manage.py collectstatic --noinput
+manage.py migrate
