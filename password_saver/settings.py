@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'n(&rt!no!kj@bet)3*!693y0g@1v@c)cs7txkg2(lg1gqze^lu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['password-saver-kishore.herokuapp.com/']
 
 
 # Application definition
