@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'n(&rt!no!kj@bet)3*!693y0g@1v@c)cs7txkg2(lg1gqze^lu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['password-saver-kishore.herokuapp.com', '127.0.0.1']
 
@@ -78,11 +78,8 @@ WSGI_APPLICATION = 'password_saver.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'kishore',
-        'USER': 'postgres',
-        'PASSWORD': 'kishore188',
-        'HOST': 'localhost',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
