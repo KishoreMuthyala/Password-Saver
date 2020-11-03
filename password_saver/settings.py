@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'kishore',
         'USER': 'postgres',
         'PASSWORD': 'kishore188',
-        'HOST': 'localhost',
+        'HOST': 'password-saver-kishore.herokuapp.com',
     }
 }
 
