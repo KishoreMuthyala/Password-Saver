@@ -78,7 +78,7 @@
     <h4>{{ websites|length }} passwords saved so far......</h4>
     {% for w in websites %}
 
-    <div class="card1 card">
+    <div class="card1 card bg-light">
       <div name="name"><h4 style="text-align: center;">{{ w.website_name }}</h4></div>
       <div>
         <h4>
@@ -100,7 +100,7 @@
             disabled
           /> -->
 
-            <span id="hide"></span><input id="{{ w.id }}" type="password" value="{{ w.password }}" class="no" disabled aria-disabled="true" >
+            <span id="hide" class="bg-light"></span><input id="{{ w.id }}" type="password" value="{{ w.password }}" class="no bg-light" disabled aria-disabled="true" >
           <script>
             var hide = document.getElementById('hide');
             var txt = document.getElementById('{{w.id}}');
@@ -114,8 +114,8 @@
               txt.style.width = c + "px";
             }
           </script>
-            <i class="fa-eye-slash fas" onclick="myFunc({{ w.id }})" id="a{{ w.id }}" style="cursor: pointer;"></i>
-            <i class="fa-copy fas" onclick="copy({{ w.id }})" id="b{{ w.id }}" style="cursor: pointer;"></i>
+            <i class="fa-eye-slash fas" onclick="myFunc({{ w.id }})" id="a{{ w.id }}" style="cursor: pointer; text-align:right;"></i>
+            <i class="fa-copy fas" onclick="copy({{ w.id }})" id="b{{ w.id }}" style="cursor: pointer; text-align:right;"></i>
         </h5>
       </div>
       <form
