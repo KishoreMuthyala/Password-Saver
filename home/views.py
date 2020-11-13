@@ -16,6 +16,9 @@ def home(request):
             password = request.POST["password"]
             user_id = request.POST['user_id']
             text, d = encode(password)
+            if not (website_url[:7] == 'http://' or website_url[:8] == 'https://' or website_url[:4] == 'www.'):
+                website_url = 'http://'+website_url
+
             website = Passwords(website_url=website_url,
                                 website_name=website_name, email=email, password=text, user_id=user_id, keys=str(d))
             website.save()

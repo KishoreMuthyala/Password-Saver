@@ -66,6 +66,17 @@
         y.className="fa-eye-slash fas img";
       }
     }
+    function dark(){
+
+    if(document.body.style.color==""||document.body.style.color=="black"){
+     document.body.style.color="white";
+     document.body.style.backgroundColor="black";
+    }
+    else{
+       document.body.style.color="black";
+       document.body.style.backgroundColor="black";
+    }
+    }
     function copy(id) {
       var copyText = document.getElementById(id);
       var cop=document.getElementById('b'+id);
@@ -93,6 +104,7 @@
 
   </script>
   <style>
+    
     .rows {
       margin: 10px;
     }
@@ -217,12 +229,12 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
+  </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
         <li class="nav-item active">
-          <span class="nav-link">Hello, {{user.username }}</span>
+          <span class="nav-link">Hello, {{ user.username }}</span>
         </li>
         <li class="nav-item active">
           <a class="nav-link log" href="{% url 'logout' %}">Logout</a>
@@ -232,7 +244,6 @@
         <li {% if 'login' in request.path %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
           <a class="nav-link log" href="{% url 'login'%}">Login</a>
         </li>
-
         <li {% if 'register' in request.path %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
           <a class="nav-link log" href="{% url 'register' %}">Register</a>
         </li>

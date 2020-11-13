@@ -88,18 +88,10 @@
           >
         </h4>
       </div>
-      <div><h4><i class="fa-envelope fas"></i> {{ w.email}}</h4></div>
+      <div><h4><i class="fa-user fas"></i> {{ w.email}}</h4></div>
       <div>
         <h5>
           <i class="fa-key fas"></i>
-          <!-- <input
-            type="password"
-            class="no"
-            id="{{w.id}}"
-            value="{{ w.password }}"
-            disabled
-          /> -->
-
             <span id="hide" class="bg-light"></span><input id="{{ w.id }}" type="password" value="{{ w.password }}" class="no bg-light" disabled aria-disabled="true" >
           <script>
             var hide = document.getElementById('hide');
